@@ -1,14 +1,15 @@
 // '#4b1328'
 // '#5054a4'
-let angle = -2;
+let angle = 0;
+let angle2 = -140;
 let angleY = 0;
 let direct =1;
 // font, text
 let myFont;
 let myMask;
 let tSize;
-let ipText = 'YourMomma';
-let ttext='zzzzzzz'+ipText+'zzzzzzz';
+let ipText = 'IDOntKnowWhatToWrite';
+let ttext='zzzzzzzz'+ipText+'zzzzzzzz';
 // graphic
 let mText;
 let mkText;
@@ -51,13 +52,13 @@ renderer.drawingContext.disable(renderer.drawingContext.DEPTH_TEST);
   // gl.enable(gl.BLEND);
   // gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
-  tSize = 100;
+  tSize = 50;
   tColor = color('#5054a4');
   bgColor = color('#4b1328');
   mkColor = gl.clearColor(255, 255, 255, 10);
 
   mText = createGraphics(500*PI,200);
-  bText = createGraphics(500*PI,200,WEBGL);
+  bText = createGraphics(500*PI,200);
   mkText = createGraphics(500*PI,200);
   // mkBg = createGraphics(500*PI,200,WEBGL);
   // mk = createGraphics(500*PI,200,WEBGL);
@@ -76,15 +77,24 @@ function draw() {
  
   // mText.background(0);
 
-  bText.push();
-  bText.fill(tColor);
+  // bText.push();
+  // input = createInput();
+  // input.position(20, 65);
+
+  // button = createButton('submit');
+  // button.position(input.x + input.width, 65);
+  
+
+  // greeting = createElement('h2', 'what is your name?');
+  // greeting.position(20, 5);
   bText.strokeWeight(0);
+  bText.fill(tColor);
   // bText.rotateY(PI);
   bText.textFont(myFont);
   bText.textSize(tSize);
   bText.textAlign(CENTER);
-  bText.text(ipText, width/2, 25);
-  bText.pop();
+  bText.text(ipText, width/2, 125);
+  // bText.pop();
   // mText.scale(2,1);
   // mkText.push();
   // mText.background(100,10);
@@ -108,42 +118,42 @@ function draw() {
   // image(mText,windowWidth/2 -250, windowHeight/2 -250);
 
   
-  if(angle > -1.9)
+  if(angle > 10)
   {
     direct = -1;
   }
-  if (angle < -2.1)
+  if (angle < -10)
   {
     direct = 1;
   }
-  angle += direct*0.003;
+  angle += direct*0.4;
+  angle2 += (-direct)*0.4;
+  
   
   // blendMode(DIFFERENCE);
  
 
   noStroke();
-  // rotateX(0.1);
-  // stroke(tColor);
   push();
-  rotateY(radians(0));
-  // rotateX(180-angleY);
+  rotateY(radians(-130)-radians(angle));
+  // rotateX(radians(angleY));
   texture(bText);
   cylinder(245,200);
   pop();
-  
-  // push();
-  // rotateY(radians(-180));
-  // // rotateX(angleY);
-  // texture(mkText);
-  // cylinder(250,200);
-  // pop();
+  rotateX(radians(-angleY));
+  push();
+  rotateY(radians(-130)+radians(angle));
+  // rotateX(radians(angleY));
+  texture(mkText);
+  cylinder(250,200);
+  pop();
 
-  // push();
-  // rotateY(radians(-180));
-  // // rotateX(angleY);
-  // texture(mText);
-  // cylinder(250,200);
-  // pop();
+  push();
+  rotateY(radians(-130)+radians(angle));
+  // rotateX(radians(angleY));
+  texture(mText);
+  cylinder(250,200);
+  pop();
   
   // push();
   
@@ -203,8 +213,8 @@ function pgMask(_content,_mask){
 // }
 
 function mouseDragged() {
-  let dragY = map(mouseY, 0, windowWidth, -1, 1 );
-  let dragX = map(mouseX, 0, windowWidth, -2.3, -1.7 );
+  let dragY = map(mouseY, 0, windowWidth, -15, 15 );
+  let dragX = map(mouseX, 0, windowWidth, -10, 10 );
   angle = dragX;
   angleY=dragY;
     x2s = mouseX;
@@ -223,3 +233,4 @@ function rtod(radians)
   var pi = Math.PI;
   return radians * (180/pi);
 }
+
