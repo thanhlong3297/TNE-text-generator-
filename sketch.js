@@ -54,7 +54,7 @@ renderer.drawingContext.disable(renderer.drawingContext.DEPTH_TEST);
 
   tSize = 50;
   tColor = color('#5054a4');
-  bgColor = color('#4b1328');
+  bgColor = color('#000000');
   mkColor = gl.clearColor(255, 255, 255, 10);
 
   mText = createGraphics(500*PI,200);
@@ -126,8 +126,8 @@ function draw() {
   {
     direct = 1;
   }
-  angle += direct*0.4;
-  angle2 += (-direct)*0.4;
+  angle += direct*0.2;
+  angle2 += (-direct)*0.2;
   
   
   // blendMode(DIFFERENCE);
@@ -140,7 +140,7 @@ function draw() {
   texture(bText);
   cylinder(245,200);
   pop();
-  rotateX(radians(-angleY));
+  // rotateX(radians(-angleY));
   push();
   rotateY(radians(-130)+radians(angle));
   // rotateX(radians(angleY));
